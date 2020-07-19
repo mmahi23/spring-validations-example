@@ -33,7 +33,8 @@ public class CustomAdviceController {
         List<FieldError> errors = new ArrayList<>();
         error.setFieldErrors(errors);
         for (org.springframework.validation.FieldError fieldError: fieldErrors) {
-            error.addFieldError(fieldError.getField(), fieldError.getDefaultMessage());
+            //error.addFieldError(fieldError.getField(), fieldError.getDefaultMessage());
+            error.addFieldError(fieldError.getField(), fieldError.getCode());
         }
         return error;
     }
