@@ -1,6 +1,7 @@
 package com.mm.springvalidationexample.controllers;
 
 import com.mm.springvalidationexample.models.ErrorModel;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.http.HttpStatus;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -35,7 +36,7 @@ public class CustomAdviceController {
         error.setMessage("Unhandled Error");
         List<FieldError> errors = new ArrayList<>();
         error.setFieldErrors(errors);
-        error.addFieldError("",ex.getCause().toString());
+        error.addFieldError("", ExceptionUtils.getStackTrace(ex));
         return  error;
     }
 
