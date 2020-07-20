@@ -16,21 +16,22 @@ public class UsersCustomValidator implements Validator {
     @Autowired
     private MessageSource messageSource;
 
+    @Autowired
+    private AddressCustomValidator validator;
+
     @Override
     public boolean supports(Class<?> aClass) {
         return User.class.equals(aClass);
-        //return false;
     }
 
     @Override
     public void validate(Object o, Errors errors) {
         User requestBody = (User)o;
 
-        //ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name","user.name.error");
         ValidationUtils.rejectIfEmptyOrWhitespace(errors,"name",messageSource.getMessage("user.name.error",null, Locale.US));
-
-//        if(requestBody.getName().isEmpty())
-//            errors.rejectValue("name","Name cannot be empty");
-
+        errors.pushNestedPath("addressDetail");
+        ValidationUtils.invokeValidator(validator, requestBody.getAddressDetail(), errors);
+        errors.popNestedPath();
+        //throw new NullPointerException();
     }
 }
