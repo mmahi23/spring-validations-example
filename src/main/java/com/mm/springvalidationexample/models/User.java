@@ -7,10 +7,10 @@ import javax.validation.constraints.NotEmpty;
 @Data
 public class User {
 
-    @NotEmpty
+    //@NotEmpty
     private String name;
 
-    @NotEmpty
+    //@NotEmpty
     private String address;
 
     private AddressDetail addressDetail;
