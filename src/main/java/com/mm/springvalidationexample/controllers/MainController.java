@@ -1,5 +1,6 @@
 package com.mm.springvalidationexample.controllers;
 
+import com.mm.springvalidationexample.configuration.ExecutionTimeLog;
 import com.mm.springvalidationexample.models.GhUser;
 import com.mm.springvalidationexample.models.User;
 import com.mm.springvalidationexample.service.UserLocatorService;
@@ -36,6 +37,7 @@ public class MainController {
         binder.setValidator(customValidator);
     }
 
+    @ExecutionTimeLog
     @PostMapping(path = "/users", consumes = MediaType.APPLICATION_JSON_VALUE)
     public String postUsers(@Valid @RequestBody User userInfo) throws InterruptedException, ExecutionException {
 
