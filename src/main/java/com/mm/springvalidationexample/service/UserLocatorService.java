@@ -1,5 +1,6 @@
 package com.mm.springvalidationexample.service;
 
+import com.mm.springvalidationexample.configuration.ExecutionTimeLog;
 import com.mm.springvalidationexample.models.GhUser;
 import com.mm.springvalidationexample.models.User;
 import org.slf4j.Logger;
@@ -27,6 +28,7 @@ public class UserLocatorService {
 
     private static final Logger logger = LoggerFactory.getLogger(UserLocatorService.class);
 
+    @ExecutionTimeLog
     @Async("threadPoolExecutor")
     public CompletableFuture<GhUser> getUserInfo(String userLoginId) throws InterruptedException {
 
